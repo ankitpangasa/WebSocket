@@ -14,12 +14,4 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <!-- Java-WebSocket Dependency -->
-        <dependency>
-            <groupId>org.java-websocket</groupId>
-            <artifactId>Java-WebSocket</artifactId>
-            <version>1.5.1</version> <!-- Replace with the latest version -->
-        </dependency>
-    </dependencies>
 </project>

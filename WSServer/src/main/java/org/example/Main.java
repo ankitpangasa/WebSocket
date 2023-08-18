@@ -26,11 +26,14 @@ public class Main {
                             BufferedReader userInputReader = new BufferedReader(new InputStreamReader(System.in))
                     ) {
                         String userInput;
+                        Thread.sleep(50);
                         while ((userInput = userInputReader.readLine()) != null) {
                             writer.println(userInput);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                 });
                 sendThread.start();
@@ -39,12 +42,15 @@ public class Main {
                     try (
                             BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
                     ) {
+                        Thread.sleep(50);
                         String line;
                         while ((line = reader.readLine()) != null) {
                             saveMessageToFile("server.txt", line);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                 });
                 receiveThread.start();

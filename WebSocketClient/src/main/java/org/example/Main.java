@@ -18,25 +18,32 @@ public class Main {
             System.out.println("Connected to server at " + socket.getRemoteSocketAddress());
             while (true) {
                 Thread sendThread = new Thread(() -> {
+
                     try {
+                        Thread.sleep(50);
                         String userInput;
                         while ((userInput = userInputReader.readLine()).length() >= 1) {
                             writer.println(userInput);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                 });
                 sendThread.start();
 
                 Thread receiveThread = new Thread(() -> {
                     try {
+                        Thread.sleep(50);
                         String line;
                         while ((line = reader.readLine()) != null) {
                             saveMessageToFile("client.txt", line);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                 });
                 receiveThread.start();
